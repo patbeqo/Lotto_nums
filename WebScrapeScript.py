@@ -23,5 +23,6 @@ soup = BeautifulSoup(content, 'html.parser')
 # Parsing in order to find the lotto numbers
 lotto_nums = soup.find(class_="span29 lotto-649-numbers").find("li")
 
+browser.quit()
 print (lotto_nums)
 
