@@ -1,7 +1,8 @@
 import requests
 from selenium import webdriver
 from bs4 import BeautifulSoup
-import pandas as pd
+import xlwt
+from xlwt import Workbook
 
 # Location of chromedriver.exe
 chromedriver = '/mnt/c/Program Files/chromedriver.exe'
@@ -21,8 +22,23 @@ content = browser.page_source
 soup = BeautifulSoup(content, 'html.parser')
 
 # Parsing in order to find the lotto numbers
-lotto_nums = soup.find(class_="span29 lotto-649-numbers").find("li")
+lotto_nums = soup.find(class_="span29 lotto-649-numbers").find("li").get_text()
 
-browser.quit()
-print (lotto_nums)
+lotto_nums = list(lotto_nums.split(' ')) # converts string to list
+lotto_nums.pop() # remove the last element which was ' '
 
+# Workbook is created 
+wb = Workbook() 
+  
+# add_sheet is used to create sheet. 
+sheet1 = wb.add_sheet('Sheet 1') 
+
+# writing to excel sheet
+sheet1.write(1, 0, lotto_nums[0]) 
+sheet1.write(1, 1, lotto_nums[1]) 
+sheet1.write(1, 2, lotto_nums[2]) 
+sheet1.write(1, 3, lotto_nums[3]) 
+sheet1.write(1, 4, lotto_nums[4]) 
+sheet1.write(1, 5, lotto_nums[5]) 
+
+wb.save('excel_test.xls') 
