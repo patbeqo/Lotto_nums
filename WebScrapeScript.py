@@ -42,3 +42,5 @@ sheet1.write(1, 4, lotto_nums[4])
 sheet1.write(1, 5, lotto_nums[5]) 
 
 wb.save('excel_test.xls') 
+
+exit()
