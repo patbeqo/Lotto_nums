@@ -4,7 +4,7 @@ import xlwt
 from xlwt import Workbook
 
 # Location of chromedriver.exe
-chromedriver = '/mnt/c/Program Files/chromedriver.exe'
+chromedriver = 'C:\Program Files\chromedriver.exe'
 
 # Below fixes issues with the dynamic webpage replacing HTML content
 options = webdriver.ChromeOptions()
