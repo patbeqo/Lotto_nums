@@ -31,14 +31,25 @@ rb = open_workbook('lottodata.xls')
 wb = copy(rb)
 s = wb.get_sheet(0)
 
+# Read text file to know where to insert new data
+row_number = 0
+f = open("Line_store.txt", "r")
+row_number = int(f.readline())
+f.close()
+
 # writing to excel sheet
-s.write(1, 0, lotto_nums[0])
-s.write(1, 1, lotto_nums[1])
-s.write(1, 2, lotto_nums[2])
-s.write(1, 3, lotto_nums[3])
-s.write(1, 4, lotto_nums[4])
-s.write(1, 5, lotto_nums[5])
+s.write(row_number, 0, lotto_nums[0])
+s.write(row_number, 1, lotto_nums[1])
+s.write(row_number, 2, lotto_nums[2])
+s.write(row_number, 3, lotto_nums[3])
+s.write(row_number, 4, lotto_nums[4])
+s.write(row_number, 5, lotto_nums[5])
 
 wb.save('lottodata.xls') 
+
+# Update text file for next use
+f = open("Line_store.txt", "w")
+f.write(str(row_number+1))
+f.close()
 
 exit()
