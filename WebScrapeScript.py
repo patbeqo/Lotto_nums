@@ -1,7 +1,6 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
-from xlrd import open_workbook
-from xlutils.copy import copy
+import openpyxl
 
 # Location of chromedriver.exe
 chromedriver = 'C:\Program Files\chromedriver.exe'
@@ -26,10 +25,9 @@ lotto_nums = soup.find(class_="span29 lotto-649-numbers").find("li").get_text()
 lotto_nums = list(lotto_nums.split(' ')) # converts string to list
 lotto_nums.pop() # remove the last element which was ' '
 
-# Open existing excel file
-rb = open_workbook('lottodata.xls')
-wb = copy(rb)
-s = wb.get_sheet(0)
+# Open existing excel file sheet
+wb = openpyxl.load_workbook('lottodata.xlsx')
+s = wb['6 49']
 
 # Read text file to know where to insert new data
 row_number = 0
@@ -38,14 +36,14 @@ row_number = int(f.readline())
 f.close()
 
 # writing to excel sheet
-s.write(row_number, 0, lotto_nums[0])
-s.write(row_number, 1, lotto_nums[1])
-s.write(row_number, 2, lotto_nums[2])
-s.write(row_number, 3, lotto_nums[3])
-s.write(row_number, 4, lotto_nums[4])
-s.write(row_number, 5, lotto_nums[5])
+s.cell(row_number, 2, lotto_nums[0])
+s.cell(row_number, 3, lotto_nums[1])
+s.cell(row_number, 4, lotto_nums[2])
+s.cell(row_number, 5, lotto_nums[3])
+s.cell(row_number, 6, lotto_nums[4])
+s.cell(row_number, 7, lotto_nums[5])
 
-wb.save('lottodata.xls') 
+wb.save('lottodata.xlsx') 
 
 # Update text file for next use
 f = open("Line_store.txt", "w")
