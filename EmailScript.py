@@ -21,8 +21,8 @@ num5 = s.cell(row_number,6).value
 num6 = s.cell(row_number,7).value
 
 #Sender and receiver
-FROM = "patbeqo@gmail.com"
-TO = ["patbeqo@gmail.com","pbeqo@uwaterloo.ca"] # must be a list
+FROM = "email"
+TO = ["email1","email2"] # must be a list
 
 #Subject for the email
 SUBJECT = "Your weekly lotto numbers"
